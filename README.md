@@ -153,6 +153,15 @@ this extention is also registered in autodesk viweer
 
 **Kind**: inner class of [<code>createExtention</code>](#createExtention)  
 **Extends**: <code>SpinalPanelApp</code>  
+**Properties**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| viewer | <code>AutodeskViewer</code> | the autodesk view |
+| panel | <code>AutodeskPanel</code> | the panel |
+| compoment | <code>Vue.component</code> | the compoment mounted |
+| cfg | <code>Object</code> | the option given on creation |
+
 
 * [~SpinalForgeExtention](#createExtention..SpinalForgeExtention) ⇐ <code>SpinalPanelApp</code>
     * [.load()](#createExtention..SpinalForgeExtention+load)

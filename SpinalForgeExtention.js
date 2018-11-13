@@ -146,6 +146,10 @@ module.exports = function(spinalPanelManagerService, SpinalPanelApp) {
        * class returned by createExtention
        * this extention is also registered in autodesk viweer
        * @extends SpinalPanelApp
+       * @property {AutodeskViewer} viewer the autodesk view
+       * @property {AutodeskPanel} panel the panel
+       * @property {Vue.component} compoment the compoment mounted
+       * @property {Object} cfg the option given on creation
        */
       const SpinalForgeExtention = class extends SpinalPanelApp {
         constructor(viewer, options) {
