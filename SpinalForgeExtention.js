@@ -173,7 +173,7 @@ module.exports = function(spinalPanelManagerService, SpinalPanelApp) {
               );
             }
           }
-          if (typeof cfg.onLoad !== "undefined") cfg.onLoad();
+          if (typeof cfg.onLoad !== "undefined") cfg.onLoad.call(this);
           return true;
         }
         /**
@@ -184,7 +184,7 @@ module.exports = function(spinalPanelManagerService, SpinalPanelApp) {
           if (typeof cfg.toolbar !== "undefined") {
             this.viewer.subToolbar.removeControl(this.toolbarButton);
           }
-          if (typeof cfg.onUnLoad !== "undefined") cfg.onUnLoad();
+          if (typeof cfg.onUnLoad !== "undefined") cfg.onUnLoad.call(this);
           return true;
         }
 
