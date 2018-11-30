@@ -24,12 +24,17 @@
 
 function configInit(option) {
   const cfg = {};
-  if (typeof option.toolbar !== "undefined")
+  if (typeof option.toolbar !== "undefined") {
     cfg.toolbar = {
       icon: option.toolbar.icon || "done",
       label: option.toolbar.label || "label",
-      subToolbarName: option.toolbar.subToolbarName || "spinalcom"
+      subToolbarName: option.toolbar.subToolbarName || "spinalcom",
+      styleBtn: {},
+      styleIcon: {}
     };
+    Object.assign(cfg.toolbar.styleBtn, option.toolbar.styleBtn);
+    Object.assign(cfg.toolbar.styleIcon, option.toolbar.styleIcon);
+  }
   if (typeof option.panel !== "undefined") {
     cfg.panel = {
       title: option.panel.title || "Spinalcom Panel",
@@ -67,6 +72,18 @@ function createToolbar() {
   var icon = this.toolbarButton.container.firstChild;
   icon.className = "adsk-button-icon md-icon md-icon-font md-theme-default";
   icon.innerHTML = this.cfg.toolbar.icon;
+
+  for (var key in this.cfg.toolbar.styleIcon) {
+    if (this.cfg.toolbar.styleIcon.hasOwnProperty(key)) {
+      icon.style[key] = this.cfg.toolbar.styleIcon[key];
+    }
+  }
+  for (var key in this.cfg.toolbar.styleBtn) {
+    if (this.cfg.toolbar.styleBtn.hasOwnProperty(key)) {
+      this.toolbarButton.container.style[key] = this.cfg.toolbar.styleBtn[key];
+    }
+  }
+
   this.toolbarButton.setToolTip(this.cfg.toolbar.label);
   this.subToolbar = this.viewer.toolbar.getControl(
     this.cfg.toolbar.subToolbarName
