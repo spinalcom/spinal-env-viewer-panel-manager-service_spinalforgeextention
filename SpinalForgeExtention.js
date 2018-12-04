@@ -100,7 +100,7 @@ function createToolbar() {
 function closeComponent() {
   if (this.cfg.panel.closeBehaviour !== "hide") {
     try {
-      this.compoment.removed.call(this.compoment);
+      this.component.removed.call(this.component);
     } catch (e) {
       console.error(e);
     }
@@ -108,7 +108,7 @@ function closeComponent() {
     this.panel = null;
   } else {
     try {
-      this.compoment.closed.call(this.compoment);
+      this.component.closed.call(this.component);
     } catch (e) {
       console.error(e);
     }
@@ -136,7 +136,7 @@ function getPanel() {
     this.panel.container.appendChild(_footer);
 
     if (this.cfg.vueMountComponent) {
-      this.compoment = new this.cfg.vueMountComponent().$mount(_container);
+      this.component = new this.cfg.vueMountComponent().$mount(_container);
     }
 
     const _this = this;
@@ -190,7 +190,7 @@ module.exports = function(spinalPanelManagerService, SpinalPanelApp) {
        * @extends SpinalPanelApp
        * @property {AutodeskViewer} viewer the autodesk view
        * @property {AutodeskPanel} panel the panel
-       * @property {Vue.component} compoment the compoment mounted
+       * @property {Vue.component} component the component mounted
        * @property {Object} cfg the option given on creation
        */
       const SpinalForgeExtention = class extends SpinalPanelApp {
@@ -242,7 +242,7 @@ module.exports = function(spinalPanelManagerService, SpinalPanelApp) {
           const panel = getPanel.call(this);
           panel.setVisible(true);
           try {
-            this.compoment.opened.call(this.compoment, option, this.viewer);
+            this.component.opened.call(this.component, option, this.viewer);
           } catch (e) {
             console.error(e);
           }
