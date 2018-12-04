@@ -97,6 +97,24 @@ function createToolbar() {
   this.subToolbar.addControl(this.toolbarButton);
 }
 
+function closeComponent() {
+  if (this.cfg.panel.closeBehaviour !== "hide") {
+    try {
+      this.compoment.removed.call(this.compoment);
+    } catch (e) {
+      console.error(e);
+    }
+    panel.container.remove();
+    this.panel = null;
+  } else {
+    try {
+      this.compoment.closed.call(this.compoment);
+    } catch (e) {
+      console.error(e);
+    }
+  }
+}
+
 function getPanel() {
   if (this.panel === null) {
     this.panel = new window.PanelClass(this.viewer, this.cfg.panel.title);
@@ -120,6 +138,13 @@ function getPanel() {
     if (this.cfg.vueMountComponent) {
       this.compoment = new this.cfg.vueMountComponent().$mount(_container);
     }
+
+    const _this = this;
+    this.panel.addVisibilityListener(open => {
+      if (!open) {
+        closeComponent.call(_this);
+      }
+    });
   }
   return this.panel;
 }
@@ -230,21 +255,6 @@ module.exports = function(spinalPanelManagerService, SpinalPanelApp) {
         closePanel(option) {
           const panel = getPanel.call(this);
           panel.setVisible(false);
-          if (this.cfg.panel.closeBehaviour !== "hide") {
-            try {
-              this.compoment.removed.call(this.compoment, option, this.viewer);
-            } catch (e) {
-              console.error(e);
-            }
-            panel.container.remove();
-            this.panel = null;
-          } else {
-            try {
-              this.compoment.closed.call(this.compoment, option, this.viewer);
-            } catch (e) {
-              console.error(e);
-            }
-          }
         }
         /**
          *
