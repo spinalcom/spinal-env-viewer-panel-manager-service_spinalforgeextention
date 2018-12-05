@@ -104,7 +104,7 @@ function closeComponent() {
     } catch (e) {
       console.error(e);
     }
-    panel.container.remove();
+    this.panel.container.remove();
     this.panel = null;
   } else {
     try {
