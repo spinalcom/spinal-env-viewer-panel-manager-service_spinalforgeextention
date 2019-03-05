@@ -14,7 +14,7 @@ Get the service instances and factory.
 
 ```js
 const {
-  SpinalMountExtention
+  SpinalForgeExtention
 } = require("spinal-env-viewer-panel-manager-service_spinalforgeextention");
 ```
 
