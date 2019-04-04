@@ -22,6 +22,7 @@
  * <http://resources.spinalcom.com/licenses.pdf>.
  */
 
+
 function configInit(option) {
   const cfg = {};
   if (typeof option.toolbar !== "undefined") {
@@ -128,6 +129,14 @@ function getPanel() {
         this.panel.container.style[key] = this.cfg.style[key];
       }
     }
+    console.log(this.panel.container.style.left);
+
+    if (this.panel.container.style.left) {
+      console.log((window.innerWidth / 2), parseInt(this.panel.container.style.left));
+
+      this.panel.container.style.left = "0";
+    }
+
     this.panel.container.appendChild(_scrollContainer);
     _scrollContainer.style.height = "calc(100% - 52px)";
     _scrollContainer.appendChild(_container);
@@ -264,7 +273,7 @@ module.exports = function(spinalPanelManagerService, SpinalPanelApp) {
         tooglePanel(option) {
           if (this.panel === null || this.panel.isVisible() === false) {
             this.openPanel.call(this, option);
-          } else this.closePanel.call(this, option);
+          } else {this.closePanel.call(this, option);}
         }
       };
       return SpinalForgeExtention;
