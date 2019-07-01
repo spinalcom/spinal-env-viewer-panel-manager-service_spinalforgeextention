@@ -56,7 +56,7 @@ function configInit(option) {
 
 function onToolbarCreated() {
   this.viewer.removeEventListener(
-    window.av.TOOLBAR_CREATED_EVENT,
+    window.Autodesk.Viewing.TOOLBAR_CREATED_EVENT,
     this.onToolbarCreatedBinded
   );
   this.onToolbarCreatedBinded = null;
@@ -223,7 +223,7 @@ module.exports = function(spinalPanelManagerService, SpinalPanelApp) {
             } else {
               this.onToolbarCreatedBinded = onToolbarCreated.bind(this);
               this.viewer.addEventListener(
-                window.av.TOOLBAR_CREATED_EVENT,
+                window.Autodesk.Viewing.TOOLBAR_CREATED_EVENT,
                 this.onToolbarCreatedBinded
               );
             }
