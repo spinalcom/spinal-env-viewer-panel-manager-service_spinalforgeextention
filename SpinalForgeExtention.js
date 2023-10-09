@@ -128,11 +128,8 @@ function getPanel() {
         this.panel.container.style[key] = this.cfg.style[key];
       }
     }
-    console.log(this.panel.container.style.left);
 
     if (this.panel.container.style.left) {
-      console.log((window.innerWidth / 2), parseInt(this.panel.container.style.left));
-
       this.panel.container.style.left = "0";
     }
 
