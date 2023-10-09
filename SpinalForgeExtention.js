@@ -1,19 +1,19 @@
 /*
- * Copyright 2018 SpinalCom - www.spinalcom.com
- *
+ * Copyright 2023 SpinalCom - www.spinalcom.com
+ * 
  * This file is part of SpinalCore.
- *
+ * 
  * Please read all of the following terms and conditions
  * of the Free Software license Agreement ("Agreement")
  * carefully.
- *
+ * 
  * This Agreement is a legally binding contract between
  * the Licensee (as defined below) and SpinalCom that
  * sets forth the terms and conditions that govern your
  * use of the Program. By installing and/or using the
  * Program, you agree to abide by all the terms and
  * conditions stated or referenced herein.
- *
+ * 
  * If you do not agree to abide by these terms and
  * conditions, do not demonstrate your acceptance and do
  * not install or use the Program.
@@ -21,7 +21,6 @@
  * with this file. If not, see
  * <http://resources.spinalcom.com/licenses.pdf>.
  */
-
 
 function configInit(option) {
   const cfg = {};
@@ -165,7 +164,7 @@ function getPanel() {
  * @param {*} SpinalPanelApp
  * @returns {object} { createExtention, registerExtention }
  */
-module.exports = function(spinalPanelManagerService, SpinalPanelApp) {
+module.exports = function (spinalPanelManagerService, SpinalPanelApp) {
   return {
     /**
      * factory function to create a dynamic class that extends the `SpinalPanelApp` class
@@ -243,6 +242,14 @@ module.exports = function(spinalPanelManagerService, SpinalPanelApp) {
           return true;
         }
 
+        activate() {
+          return this.load();
+        }
+
+        deactivate() {
+          return this.unload();
+        }
+
         /**
          *
          * @param {*} option
@@ -273,7 +280,7 @@ module.exports = function(spinalPanelManagerService, SpinalPanelApp) {
         tooglePanel(option) {
           if (this.panel === null || this.panel.isVisible() === false) {
             this.openPanel.call(this, option);
-          } else {this.closePanel.call(this, option);}
+          } else { this.closePanel.call(this, option); }
         }
       };
       return SpinalForgeExtention;
